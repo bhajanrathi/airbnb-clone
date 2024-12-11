@@ -107,3 +107,9 @@ a.btn {
     width: 6rem;
     margin-right: 1rem;
 }
+
+/* Map */
+#map {
+    height: 400px;
+    width: 80vh; 
+}

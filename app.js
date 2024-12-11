@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production") {
+    require('dotenv').config();
+}
+
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -15,6 +19,8 @@ const User = require("./models/user.js");
 const listingRouter = require('./routes/listing.js');
 const reviewRouter = require('./routes/review.js');
 const userRouter = require('./routes/user.js');
+
+const dbUrl = process.env.ATLASDB_URL;
 
 main()
     .then(() => {console.log("Connected to DB")})
@@ -41,10 +47,6 @@ const sessionOptions = {
         httpOnly: true,
     },
 };
-
-app.get("/", (req, res) => {
-    res.send("Hi! I am root");
-});
 
 app.use(session(sessionOptions));
 app.use(flash());
